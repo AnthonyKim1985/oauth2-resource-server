@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:13306/devdb?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+    username: root
+    password: rlawlsgur!@12
+    hikari:
+      idle-timeout: 10000
+      max-lifetime: 28000000
+      connection-timeout: 10000
+      validation-timeout: 10000
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,refresh,hystrix.stream,turbine.stream
+
+server:
+  port: 8082
+
+security:
+  oauth2:
+    client:
+      client-id: testClientId
+      client-secret: testSecret
+    resource:
+      token-info-uri: http://localhost:8081/oauth/check_token
+    jwt:
+      sign-key: asdf!@12
+
+logging:
+  level:
+    root: debug
+
